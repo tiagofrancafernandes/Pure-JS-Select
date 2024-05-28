@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pure JS Select</title>
+
+    <script type="module" src="src/app.js"></script>
+    <link rel="stylesheet" href="src/assets/css/style.css">
+
+    <style>
+        [data-f2-selector="list"] [data-f2-selector-type="option"] {
+            margin-bottom: 0.5rem;
+        }
+
+        [data-f2-selector-type="option"] {
+            cursor: pointer;
+        }
+
+        [data-f2-selector-type="option"] {
+            background: rgb(208, 205, 205);
+        }
+
+        [data-f2-selector-type="option"][data-f2-selected="false"] {
+            background: rgb(208, 205, 205);
+        }
+
+        [data-f2-selector-type="option"][data-f2-selected="true"] {
+            background: grey;
+        }
+
+        [data-f2-selector-type="option"]:hover {
+            background: rgb(79, 76, 76);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h3>Pure JS Select</h3>
+    </div>
+
+    <div>
+        <div>
+            <select name="demo" class="demo-select">
+                <option value="1">Item 1</option>
+                <option value="2">Item 2</option>
+                <option value="3">Item 3</option>
+                <option value="4">Item 4</option>
+                <option value="5">Item 5</option>
+            </select>
+        </div>
+
+        <!--
+            <div data-f2-selector="container" data-f2-selector-id="demo">
+                <div data-f2-selector-type="preview_selected"></div>
+                <div data-f2-selector-type="search">
+                    <input type="search" autocomplete="false">
+                </div>
+                <ul data-f2-selector="list"></ul>
+            </div>
+        -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            let customOptions = [
+                {
+                    content: () => `Item 1`,
+                    value: '1',
+                    attributes: () => ({
+                        def: 'ghi',
+                        gerenated_at: new Date(),
+                    }),
+                },
+                {
+                    content: `Item 2`,
+                    attributes: {
+                        value: 2,
+                        abc: '123',
+                        def: 'ghi',
+                    },
+                },
+                {
+                    content: `Item 4`,
+                    value: `4`,
+                },
+                {
+                    content: `Item 5`,
+                    value: () => '5',
+                },
+            ];
+
+            let referenceSelectElement = document.querySelector('select[name="demo"].demo-select');
+
+            demoF2Selector = new F2Selector(referenceSelectElement, {
+                customOptions,
+                multiple: !true,
+                selectedItems: null,
+                valueTarget: document.querySelector('select[name="demo"].demo-select'),
+            });
+
+            console.log(demoF2Selector);
+            console.log('optionItems', demoF2Selector.optionItems);
+            // console.log(F2Selector);
+        });
+
+        window.addEventListener('load', (event) => {
+            //
+        });
+    </script>
+</body>
+</html>
