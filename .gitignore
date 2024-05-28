@@ -1,1 +1,9 @@
 node_modules
+dist
+*no*commit*
+*No*Commit*
+*NO*COMMIT*
+*.bkp.*
+*.bkp
+*.log
+*.out
